@@ -1,0 +1,7 @@
+<p class="h5 p-2">Lista de productos</p>
+<div class="media-list lista justify-content-left">
+  <app-producto-item *ngFor="let producto of productos" 
+  [producto]="producto"
+  >
+  </app-producto-item>
+</div>
