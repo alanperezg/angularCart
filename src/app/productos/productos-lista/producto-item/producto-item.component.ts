@@ -10,6 +10,7 @@ export class ProductoItemComponent implements OnInit {
   @Input() producto: Producto;
   @Input() componentMode: number;
   @Output() addItemCartLista = new EventEmitter();
+  @Output() removeItemCartLista = new EventEmitter();
   constructor() { }
   ngOnInit() {
   }
@@ -17,5 +18,8 @@ export class ProductoItemComponent implements OnInit {
     if(event.target.checked){
       this.addItemCartLista.emit(this.producto);
     }
+  }
+  removeItemCart(productoId: number){
+    this.removeItemCartLista.emit(productoId);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './Producto';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ export class ProductosService {
     new Producto(3, 'Producto 3', 'Marca 3', 'Categoria 3', 30, 30),
     new Producto(4, 'Producto 4', 'Marca 4', 'Categoria 4', 40, 40),
     new Producto(5, 'Producto 5', 'Marca 5', 'Categoria 5', 50, 50),
+    new Producto(6, 'Producto 6', 'Marca 6', 'Categoria 6', 60, 60),
   ];
   private carrito: Producto[] = [];
+  carritoChangeNotification = new Subject<Producto[]>();
   constructor() { }
   getProductos(): Producto[] {
     return this.productos.slice();
@@ -40,6 +43,17 @@ export class ProductosService {
     }
   }
   getCarrito(): Producto[] {
-    return this.carrito;
+    return this.carrito.slice();
+  }
+  carritoChange(){
+    this.carritoChangeNotification.next(this.carrito.slice());
+  }
+  removeCarrito(productoId: number){
+    this.carrito.forEach((element, index) => {
+      if(element.id == productoId) {
+        this.carrito.splice(index, 1);
+      }
+    });
+    this.carritoChange();
   }
 }

@@ -16,15 +16,15 @@
       </label>
     </div>
     <div class="row">
-      <a name="" id="" class="btn btn-primary" href="{{((componentMode==1)?'/productos/':'/carrito/')+producto.id}}" role="button">
+      <a name="" id="" class="btn btn-primary" routerLink="{{((componentMode==1)?'/productos/':'/carrito/')+producto.id}}" href="#" role="button">
         <i class="fas fa-search "></i>
       </a>
     </div>
     <!-- EL BOTON DE BORRAR SIGUIENTE SOLO DEBE APARECER EN CARRITO DE COMPRA -->
-    <div class="row mt-1" *ngIf="componentMode == 2">
-      <a name="" id="" class="btn btn-primary" href="#" role="button">
+    <div class="row mt-1" *ngIf="componentMode == 2" (click)="removeItemCart(producto.id)">
+      <div name="" id="" class="btn btn-primary">
         <i class="fas fa-trash-alt "></i>
-      </a>
+      </div>
     </div>
   </div>
  </div>

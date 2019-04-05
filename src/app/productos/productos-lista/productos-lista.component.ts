@@ -24,11 +24,20 @@ export class ProductosListaComponent implements OnInit {
       this.componentMode = 2;
       this.productos = this.productosService.getCarrito();
       this.listTitle = 'Carrito de compras';
-      this.productos.forEach(element => {
-        this.totalOrden += element.precio;
-      });
+      this.calculateTotal();
+      this.productosService.carritoChangeNotification.subscribe((productos)=>{
+        this.productos = productos;
+        this.calculateTotal();
+      })
     }
   }
+  calculateTotal(){
+    this.totalOrden = 0;
+    this.productos.forEach(element => {
+      this.totalOrden += element.precio;
+    });
+  }
+
   addItemCart(producto) {
     let found = false;
     this.selectedItems.forEach((element) => {
@@ -43,5 +52,8 @@ export class ProductosListaComponent implements OnInit {
   }
   saveItemsCart(){
     this.productosService.addCarrito(this.selectedItems);
+  }
+  removeItemCart(productoId: number){
+    this.productosService.removeCarrito(productoId);
   }
 }
