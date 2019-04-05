@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { ProductosComponent } from './productos/productos.component';
-import { ProductoItemComponent } from './productos/producto-item/producto-item.component';
-import { ProductosListaComponent } from './productos-lista/productos-lista.component';
+import { ProductoItemComponent } from './productos/productos-lista/producto-item/producto-item.component';
+import { ProductosListaComponent } from './productos/productos-lista/productos-lista.component';
+import { ProductoDetalleComponent } from './productos/producto-detalle/producto-detalle.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductosListaComponent } from './productos-lista/productos-lista.compo
     HeaderComponent,
     ProductosComponent,
     ProductoItemComponent,
-    ProductosListaComponent
+    ProductosListaComponent,
+    ProductoDetalleComponent
   ],
   imports: [
     BrowserModule,

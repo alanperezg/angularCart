@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Producto } from '../Producto';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Producto } from '../../Producto';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-producto-item',
@@ -7,9 +8,9 @@ import { Producto } from '../Producto';
   styleUrls: ['./producto-item.component.css']
 })
 export class ProductoItemComponent implements OnInit {
-  constructor() { }
   @Input() producto: Producto[];
+  @Input() componentMode: number;
+  constructor() { }
   ngOnInit() {
   }
-
 }

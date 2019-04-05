@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div *ngIf="producto!=null" class="mx-auto m-5" style="width: 200px;">
+  <div class="text-center"><img class="rounded" src="https://picsum.photos/50/50?image=1"></div>
+  <div><b>Nombre:</b> {{producto.nombre}}</div>
+  <div><b>Marca:</b> {{producto.marca}}</div>
+  <div><b>Categoría:</b> {{producto.categoria}}</div>
+  <div><b>Precio:</b> {{producto.precio}}</div>
+  <div><b>Existencia:</b> {{producto.existencia}}</div>
+</div>
+<p *ngIf="producto==null" class="h4 m-5 text-center">No existe el producto en el catalogo</p>

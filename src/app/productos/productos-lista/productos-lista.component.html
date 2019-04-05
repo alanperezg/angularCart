@@ -1,0 +1,10 @@
+<p class="h5 p-2">{{listTitle}}</p>
+<button *ngIf="componentMode == 1" class="btn btn-primary m-2">Añadir al carrito</button>
+<div class="media-list lista justify-content-left">
+  <app-producto-item *ngFor="let producto of productos" 
+  [producto]="producto"
+  [componentMode]="componentMode"
+  >
+  </app-producto-item>
+</div>
+<button *ngIf="componentMode == 1" class="btn btn-primary m-2">Añadir al carrito</button>
