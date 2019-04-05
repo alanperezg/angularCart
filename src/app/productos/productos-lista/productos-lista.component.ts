@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./productos-lista.component.css']
 })
 export class ProductosListaComponent implements OnInit {
-  
   constructor(private productosService: ProductosService, private router: Router) { }
   productos: Producto[];
-  listTitle: String;
+  listTitle: string;
   componentMode = 1;
+  selectedItems: Producto[] = [];
+  totalOrden = 0;
   ngOnInit() {
     if (this.router.url === '/productos') {
       this.componentMode = 1;
@@ -23,6 +24,24 @@ export class ProductosListaComponent implements OnInit {
       this.componentMode = 2;
       this.productos = this.productosService.getCarrito();
       this.listTitle = 'Carrito de compras';
+      this.productos.forEach(element => {
+        this.totalOrden += element.precio;
+      });
     }
+  }
+  addItemCart(producto) {
+    let found = false;
+    this.selectedItems.forEach((element) => {
+      if (element.id == producto.id) {
+        found = true;
+      }
+    });
+    if (!found) {
+      this.selectedItems.push(producto);
+    }
+    console.log(this.selectedItems);
+  }
+  saveItemsCart(){
+    this.productosService.addCarrito(this.selectedItems);
   }
 }

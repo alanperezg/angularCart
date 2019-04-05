@@ -1,10 +1,15 @@
 <p class="h5 p-2">{{listTitle}}</p>
-<button *ngIf="componentMode == 1" class="btn btn-primary m-2">Añadir al carrito</button>
+<button *ngIf="componentMode == 1" class="btn btn-primary m-2" (click)="saveItemsCart()">Añadir al carrito</button>
+<p *ngIf="componentMode == 1" class="m-3">Aritculos seleccionados: {{selectedItems.length}}</p>
+<p *ngIf="componentMode == 2 && productos.length < 1" class="text-center h6">No hay articulos en el carrito</p>
 <div class="media-list lista justify-content-left">
   <app-producto-item *ngFor="let producto of productos" 
   [producto]="producto"
   [componentMode]="componentMode"
+  (addItemCartLista)="addItemCart($event)"
   >
   </app-producto-item>
 </div>
-<button *ngIf="componentMode == 1" class="btn btn-primary m-2">Añadir al carrito</button>
+<p *ngIf="componentMode == 1" class="m-3">Aritculos seleccionados: {{selectedItems.length}}</p>
+<p *ngIf="componentMode == 2 && productos.length > 0" class="h6 m-3">Total de la orden: ${{totalOrden}}</p>
+<button *ngIf="componentMode == 1" class="btn btn-primary m-2" (click)="saveItemsCart()">Añadir al carrito</button>

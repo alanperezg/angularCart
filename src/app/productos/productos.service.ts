@@ -12,7 +12,7 @@ export class ProductosService {
     new Producto(4, 'Producto 4', 'Marca 4', 'Categoria 4', 40, 40),
     new Producto(5, 'Producto 5', 'Marca 5', 'Categoria 5', 50, 50),
   ];
-  carrito = [1, 4];
+  private carrito: Producto[] = [];
   constructor() { }
   getProductos(): Producto[] {
     return this.productos.slice();
@@ -26,21 +26,20 @@ export class ProductosService {
     });
     return producto;
   }
-  addCarrito(productoId: number) {
-    if (!this.carrito.includes(productoId)) {
-      this.carrito.push(productoId);
+  addCarrito(productos: Producto[]) {
+    for(let produto of productos) {
+      let found = false;
+      this.carrito.forEach((element) => {
+        if(produto.id == element.id) {
+          found = true;
+        }
+      });
+      if(!found) {
+        this.carrito.push(produto);
+      }
     }
   }
   getCarrito(): Producto[] {
-    const productosCarrito = [];
-    for (const producto of this.carrito) {
-      this.productos.forEach(element => {
-        if (element.id == producto) {
-          productosCarrito.push(
-            new Producto(element.id, element.nombre, element.marca, element.categoria, element.precio, element.existencia));
-        }
-      });
-    }
-    return productosCarrito;
+    return this.carrito;
   }
 }
